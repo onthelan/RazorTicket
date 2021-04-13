@@ -1,0 +1,90 @@
+@page
+@model RazorTicket.Pages_Tickets.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].TicketDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].DateOpened)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].DateModified)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].DateClosed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].ReportingUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].AssignedUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].Priority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].Subcategory)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Ticket) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOpened)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateClosed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportingUser.DisplayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssignedUser.DisplayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.StatusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority.PriorityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subcategory.SubcategoryName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.TicketId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.TicketId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.TicketId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

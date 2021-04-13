@@ -1,0 +1,82 @@
+@page
+@model RazorTicket.Pages_Tickets.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Ticket</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ticket.TicketDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ticket.TicketDescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ticket.DateOpened)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ticket.DateOpened)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ticket.DateModified)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ticket.DateModified)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ticket.DateClosed)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ticket.DateClosed)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ticket.ReportingUser)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ticket.ReportingUser.UserId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ticket.AssignedUser)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ticket.AssignedUser.UserId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ticket.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ticket.Status.StatusId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ticket.Priority)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ticket.Priority.PriorityId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ticket.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ticket.Category.CategoryId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ticket.Subcategory)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ticket.Subcategory.SubcategoryId)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Ticket.TicketId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
