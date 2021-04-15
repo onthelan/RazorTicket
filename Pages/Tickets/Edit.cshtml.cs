@@ -42,12 +42,12 @@ namespace RazorTicket.Pages_Tickets
             {
                 return NotFound();
             }
-           ViewData["AssignedUserId"] = new SelectList(_context.User, "UserId", "UserId");
-           ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryId");
-           ViewData["PriorityId"] = new SelectList(_context.Set<Priority>(), "PriorityId", "PriorityId");
-           ViewData["ReportingUserId"] = new SelectList(_context.User, "UserId", "UserId");
-           ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "StatusId", "StatusId");
-           ViewData["SubcategoryId"] = new SelectList(_context.Set<Subcategory>(), "SubcategoryId", "SubcategoryId");
+           ViewData["AssignedUserId"] = new SelectList(_context.User, "UserId", "DisplayName");
+           ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryName");
+           ViewData["PriorityId"] = new SelectList(_context.Set<Priority>(), "PriorityId", "PriorityName");
+           ViewData["ReportingUserId"] = new SelectList(_context.User, "UserId", "DisplayName");
+           ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "StatusId", "StatusName");
+           ViewData["SubcategoryId"] = new SelectList(_context.Set<Subcategory>(), "SubcategoryId", "SubcategoryName");
             return Page();
         }
 

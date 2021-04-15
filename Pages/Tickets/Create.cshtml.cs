@@ -21,7 +21,7 @@ namespace RazorTicket.Pages_Tickets
 
         public IActionResult OnGet()
         {
-        ViewData["AssignedUserId"] = new SelectList(_context.User, "UserId", "DisplayName");
+        ViewData["AssignedUserId"] = new SelectList(_context.User .Where(d => d.DepartmentId == 1), "UserId", "DisplayName");
         ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryName");
         ViewData["PriorityId"] = new SelectList(_context.Set<Priority>(), "PriorityId", "PriorityName");
         ViewData["ReportingUserId"] = new SelectList(_context.User, "UserId", "DisplayName");
