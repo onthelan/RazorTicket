@@ -10,7 +10,7 @@ using RazorTicket.Data;
 namespace RazorTicket.Migrations
 {
     [DbContext(typeof(RazorTicketContext))]
-    [Migration("20210413174305_InitialCreate")]
+    [Migration("20210415155106_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,34 @@ namespace RazorTicket.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "6.0.0-preview.3.21201.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("RazorTicket.Models.Activity", b =>
+                {
+                    b.Property<int>("ActivityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("ActivityDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ActivityDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ActivityId");
+
+                    b.HasIndex("TicketId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Activity");
+                });
 
             modelBuilder.Entity("RazorTicket.Models.Category", b =>
                 {
@@ -33,9 +61,6 @@ namespace RazorTicket.Migrations
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SubcategoryId")
-                        .HasColumnType("int");
 
                     b.HasKey("CategoryId");
 
@@ -121,7 +146,7 @@ namespace RazorTicket.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("SubcategoryDescription")
@@ -150,15 +175,6 @@ namespace RazorTicket.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateClosed")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateOpened")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("PriorityId")
                         .HasColumnType("int");
 
@@ -170,6 +186,15 @@ namespace RazorTicket.Migrations
 
                     b.Property<int>("SubcategoryId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("TicketDateClosed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TicketDateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TicketDateOpened")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("TicketDescription")
                         .HasColumnType("nvarchar(max)");
@@ -201,20 +226,20 @@ namespace RazorTicket.Migrations
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserFirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserLastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
 
@@ -225,11 +250,32 @@ namespace RazorTicket.Migrations
                     b.ToTable("User");
                 });
 
+            modelBuilder.Entity("RazorTicket.Models.Activity", b =>
+                {
+                    b.HasOne("RazorTicket.Models.Ticket", "Ticket")
+                        .WithMany("Activity")
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("RazorTicket.Models.User", "User")
+                        .WithMany("Activity")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Ticket");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("RazorTicket.Models.Subcategory", b =>
                 {
                     b.HasOne("RazorTicket.Models.Category", "Category")
                         .WithMany("Subcategory")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Category");
                 });
@@ -243,7 +289,7 @@ namespace RazorTicket.Migrations
                         .IsRequired();
 
                     b.HasOne("RazorTicket.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Ticket")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -267,7 +313,7 @@ namespace RazorTicket.Migrations
                         .IsRequired();
 
                     b.HasOne("RazorTicket.Models.Subcategory", "Subcategory")
-                        .WithMany()
+                        .WithMany("Ticket")
                         .HasForeignKey("SubcategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -288,7 +334,7 @@ namespace RazorTicket.Migrations
             modelBuilder.Entity("RazorTicket.Models.User", b =>
                 {
                     b.HasOne("RazorTicket.Models.Department", "Department")
-                        .WithMany()
+                        .WithMany("User")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -307,6 +353,13 @@ namespace RazorTicket.Migrations
             modelBuilder.Entity("RazorTicket.Models.Category", b =>
                 {
                     b.Navigation("Subcategory");
+
+                    b.Navigation("Ticket");
+                });
+
+            modelBuilder.Entity("RazorTicket.Models.Department", b =>
+                {
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("RazorTicket.Models.Priority", b =>
@@ -324,8 +377,20 @@ namespace RazorTicket.Migrations
                     b.Navigation("Ticket");
                 });
 
+            modelBuilder.Entity("RazorTicket.Models.Subcategory", b =>
+                {
+                    b.Navigation("Ticket");
+                });
+
+            modelBuilder.Entity("RazorTicket.Models.Ticket", b =>
+                {
+                    b.Navigation("Activity");
+                });
+
             modelBuilder.Entity("RazorTicket.Models.User", b =>
                 {
+                    b.Navigation("Activity");
+
                     b.Navigation("AssignedTickets");
 
                     b.Navigation("ReportedTickets");
