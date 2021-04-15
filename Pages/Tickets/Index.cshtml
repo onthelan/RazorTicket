@@ -17,13 +17,13 @@
                 @Html.DisplayNameFor(model => model.Ticket[0].TicketDescription)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ticket[0].DateOpened)
+                @Html.DisplayNameFor(model => model.Ticket[0].TicketDateOpened)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ticket[0].DateModified)
+                @Html.DisplayNameFor(model => model.Ticket[0].TicketDateModified)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ticket[0].DateClosed)
+                @Html.DisplayNameFor(model => model.Ticket[0].TicketDateClosed)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Ticket[0].ReportingUser)
@@ -53,19 +53,19 @@
                 @Html.DisplayFor(modelItem => item.TicketDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DateOpened)
+                @Html.DisplayFor(modelItem => item.TicketDateOpened)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DateModified)
+                @Html.DisplayFor(modelItem => item.TicketDateModified)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DateClosed)
+                @Html.DisplayFor(modelItem => item.TicketDateClosed)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ReportingUser.DisplayName)
+                @Html.DisplayFor(modelItem => item.ReportingUser.UserDisplayName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AssignedUser.DisplayName)
+                @Html.DisplayFor(modelItem => item.AssignedUser.UserDisplayName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status.StatusName)

@@ -21,12 +21,12 @@ namespace RazorTicket.Pages_Tickets
 
         public IActionResult OnGet()
         {
-        ViewData["AssignedUserId"] = new SelectList(_context.User .Where(d => d.DepartmentId == 1), "UserId", "DisplayName");
-        ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "CategoryId", "CategoryName");
-        ViewData["PriorityId"] = new SelectList(_context.Set<Priority>(), "PriorityId", "PriorityName");
-        ViewData["ReportingUserId"] = new SelectList(_context.User, "UserId", "DisplayName");
-        ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "StatusId", "StatusName");
-        ViewData["SubcategoryId"] = new SelectList(_context.Set<Subcategory>(), "SubcategoryId", "SubcategoryName");
+        ViewData["AssignedUserId"] = new SelectList(_context.User, "UserId", "UserDisplayName");
+        ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName");
+        ViewData["PriorityId"] = new SelectList(_context.Priority, "PriorityId", "PriorityName");
+        ViewData["ReportingUserId"] = new SelectList(_context.User, "UserId", "UserDisplayName");
+        ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName");
+        ViewData["SubcategoryId"] = new SelectList(_context.Subcategory, "SubcategoryId", "SubcategoryName");
             return Page();
         }
 
@@ -42,7 +42,7 @@ namespace RazorTicket.Pages_Tickets
             }
 
             _context.Ticket.Add(Ticket);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();        
 
             return RedirectToPage("./Index");
         }

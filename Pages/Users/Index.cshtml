@@ -14,16 +14,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.User[0].FirstName)
+                @Html.DisplayNameFor(model => model.User[0].UserFirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User[0].LastName)
+                @Html.DisplayNameFor(model => model.User[0].UserLastName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User[0].DisplayName)
+                @Html.DisplayNameFor(model => model.User[0].UserDisplayName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User[0].Email)
+                @Html.DisplayNameFor(model => model.User[0].UserEmail)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.User[0].Department)
@@ -38,16 +38,16 @@
 @foreach (var item in Model.User) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.UserFirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.UserLastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DisplayName)
+                @Html.DisplayFor(modelItem => item.UserDisplayName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                @Html.DisplayFor(modelItem => item.UserEmail)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Department.DepartmentName)

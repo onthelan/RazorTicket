@@ -23,7 +23,8 @@ namespace RazorTicket.Pages_Subcategories
 
         public async Task OnGetAsync()
         {
-            Subcategory = await _context.Subcategory.ToListAsync();
+            Subcategory = await _context.Subcategory
+                .Include(s => s.Category).ToListAsync();
         }
     }
 }

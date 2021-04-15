@@ -24,6 +24,12 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Subcategory.SubcategoryDescription)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Subcategory.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Subcategory.Category.CategoryName)
+        </dd>
     </dl>
     
     <form method="post">

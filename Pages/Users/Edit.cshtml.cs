@@ -38,8 +38,8 @@ namespace RazorTicket.Pages_Users
             {
                 return NotFound();
             }
-           ViewData["DepartmentId"] = new SelectList(_context.Set<Department>(), "DepartmentId", "DepartmentId");
-           ViewData["RoleId"] = new SelectList(_context.Set<Role>(), "RoleId", "RoleId");
+           ViewData["DepartmentId"] = new SelectList(_context.Department, "DepartmentId", "DepartmentName");
+           ViewData["RoleId"] = new SelectList(_context.Role, "RoleId", "RoleName");
             return Page();
         }
 

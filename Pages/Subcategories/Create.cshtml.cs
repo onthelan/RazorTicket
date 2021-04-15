@@ -21,6 +21,7 @@ namespace RazorTicket.Pages_Subcategories
 
         public IActionResult OnGet()
         {
+        ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName");
             return Page();
         }
 

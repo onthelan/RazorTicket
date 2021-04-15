@@ -29,7 +29,8 @@ namespace RazorTicket.Pages_Subcategories
                 return NotFound();
             }
 
-            Subcategory = await _context.Subcategory.FirstOrDefaultAsync(m => m.SubcategoryId == id);
+            Subcategory = await _context.Subcategory
+                .Include(s => s.Category).FirstOrDefaultAsync(m => m.SubcategoryId == id);
 
             if (Subcategory == null)
             {
