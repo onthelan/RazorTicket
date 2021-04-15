@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace RazorTicket.Models
 {
@@ -6,9 +7,9 @@ namespace RazorTicket.Models
     {
         public int TicketId { get; set; }
         public string TicketDescription { get; set; }
-        public DateTime DateOpened { get; set; }
-        public DateTime DateModified { get; set; }
-        public DateTime DateClosed { get; set; }
+        public DateTime TicketDateOpened { get; set; }
+        public DateTime TicketDateModified { get; set; }
+        public DateTime TicketDateClosed { get; set; }
 
         public int ReportingUserId { get; set; }
         public User ReportingUser { get; set; }
@@ -27,5 +28,7 @@ namespace RazorTicket.Models
 
         public int SubcategoryId { get; set; }
         public Subcategory Subcategory { get; set; }
+
+        public List<Activity> Activity { get; set; }
     }
 }

@@ -8,10 +8,10 @@ namespace RazorTicket.Models
     public class User
     {
         public int UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string DisplayName { get; set; }
-        public string Email { get; set; }
+        public string UserFirstName { get; set; }
+        public string UserLastName { get; set; }
+        public string UserDisplayName { get; set; }
+        public string UserEmail { get; set; }
 
         [InverseProperty("ReportingUser")]
         public List<Ticket> ReportedTickets { get; set; }
@@ -25,5 +25,7 @@ namespace RazorTicket.Models
 
         public int RoleId { get; set; }
         public Role Role { get; set; }
+
+        public List<Activity> Activity { get; set; }
     }
 }

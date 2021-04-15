@@ -9,7 +9,8 @@ namespace RazorTicket.Models
         public string CategoryName { get; set; }
         public string CategoryDescription { get; set; }
 
-        public int SubcategoryId { get; set; }
         public List<Subcategory> Subcategory { get; set; }
+
+        public List<Ticket> Ticket { get; set; }
     }
 }

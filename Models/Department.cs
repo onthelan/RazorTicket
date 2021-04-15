@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace RazorTicket.Models
 {
@@ -7,5 +8,7 @@ namespace RazorTicket.Models
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
         public string DepartmentDescription { get; set; }
+
+        public List<User> User { get; set; }
     }
 }
