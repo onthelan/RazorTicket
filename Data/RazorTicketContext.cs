@@ -18,5 +18,6 @@ namespace RazorTicket.Data
         public DbSet<RazorTicket.Models.Department> Department { get; set; }
         public DbSet<RazorTicket.Models.Priority> Priority { get; set; }
         public DbSet<RazorTicket.Models.Subcategory> Subcategory { get; set; }
+        public DbSet<RazorTicket.Models.Status> Status { get; set; }
     }
 }
