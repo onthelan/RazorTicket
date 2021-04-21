@@ -13,7 +13,7 @@ namespace RazorTicket.Models
         public static void Send(string subject, string body, string ToName, string ToEmail)
         {
             var message = new MimeMessage();
-            message.From.Add (new MailboxAddress ("Wake ROD", "christopher.peck@wakegov.com"));
+            message.From.Add (new MailboxAddress ("Wake ROD", ""));
             message.To.Add (new MailboxAddress (ToName, ToEmail));
 
             message.Subject = subject;
@@ -25,10 +25,10 @@ namespace RazorTicket.Models
             using (var client = new SmtpClient ())
             {
                 client.ServerCertificateValidationCallback = (s, c, h, e) => true;
-                client.Connect ("smtprelay.wakegov.com", 465, false);
+                client.Connect ("", 465, false);
                 
 				// Note: only needed if the SMTP server requires authentication
-				client.Authenticate ("christopher.peck@wakegov.com", "S1Ch!L3bV!");
+				client.Authenticate ("", "");
 
 				client.Send (message);
 				client.Disconnect (true);
