@@ -27,6 +27,7 @@ namespace RazorTicket.Pages_Tickets
         ViewData["ReportingUserId"] = new SelectList(_context.User, "UserId", "UserDisplayName");
         ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName");
         ViewData["SubcategoryId"] = new SelectList(_context.Subcategory, "SubcategoryId", "SubcategoryName");
+        ViewData["AssignedUserEmail"] = new SelectList(_context.User, "UserId", "UserEmail");
             return Page();
         }
 
@@ -42,7 +43,9 @@ namespace RazorTicket.Pages_Tickets
             }
 
             _context.Ticket.Add(Ticket);
-            await _context.SaveChangesAsync();        
+            await _context.SaveChangesAsync();
+
+            EmailAlert.Send("ticket created " + Ticket.TicketId, "ticket created " + Ticket.TicketId, "Chris Peck", "christopher.peck@wakegov.com");
 
             return RedirectToPage("./Index");
         }

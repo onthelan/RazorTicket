@@ -45,7 +45,7 @@ namespace RazorTicket.Pages_Tickets
            ViewData["AssignedUserId"] = new SelectList(_context.User, "UserId", "UserDisplayName");
            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryName");
            ViewData["PriorityId"] = new SelectList(_context.Priority, "PriorityId", "PriorityName");
-           ViewData["ReportingUserId"] = new SelectList(_context.User, "UserId", "UserName");
+           ViewData["ReportingUserId"] = new SelectList(_context.User, "UserId", "UserDisplayName");
            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName");
            ViewData["SubcategoryId"] = new SelectList(_context.Subcategory, "SubcategoryId", "SubcategoryName");
             return Page();
